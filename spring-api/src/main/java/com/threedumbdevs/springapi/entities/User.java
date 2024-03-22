@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -26,6 +28,23 @@ public class User {
 
     @Column(nullable = false)
     private int age;
+
+    @Column(nullable = false)
+    private boolean available_for_hire;
+
+    @Column
+    private int rating;
+
+    @Column
+    private String profile_picture_url;
+
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "pet_user",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "pet_id"))
+    private List<Pet> petList;
+
 
 
 }
