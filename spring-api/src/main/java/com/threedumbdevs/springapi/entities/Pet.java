@@ -9,7 +9,6 @@ import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -44,13 +43,22 @@ public class Pet {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private Location lastLocation;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "pet_friends",
             joinColumns = @JoinColumn(name = "pet_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
     private Set<Pet> friends = new HashSet<>();
+
+    //favourite locations
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "pet_favourite_locations",
+            joinColumns = @JoinColumn(name = "pet_id"),
+            inverseJoinColumns = @JoinColumn(name = "location_id")
+    )
+    private Set<Location> favouriteLocations = new HashSet<>();
 
 
 
