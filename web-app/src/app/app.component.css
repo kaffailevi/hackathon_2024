@@ -10,4 +10,5 @@
 
 .side-menu.active {
   left: 0; /* Move the side menu into view */
+  z-index: 10; /* Ensure a high z-index value to keep it on top */
 }
