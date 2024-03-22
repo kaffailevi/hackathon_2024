@@ -1,0 +1,47 @@
+.side-menu {
+  color: rgb(179, 138, 88);
+  position: fixed;
+  top: 70px; /* Adjust according to your navbar height */
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: rgb(60, 82, 51);
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.menu-title {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.btn-logout {
+  margin: auto; /* Push the button to the bottom */
+  background-color: rgb(13, 31, 34);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  position: relative;
+  bottom: -625px;
+}
+
+.btn-logout:hover {
+  background-color: #b93c3c;
+}

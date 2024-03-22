@@ -1,7 +1,7 @@
 <nav class="navbar">
   <div class="logo-container">
     <img class="logo" src="/assets/logo.png" alt="LOGO">
-    <div class="hamburger-menu">
+    <div class="hamburger-menu" (click)="showSideMenu()">
       <div class="line"></div>
       <div class="line"></div>
       <div class="line"></div>
@@ -13,3 +13,5 @@
     <button class="btn auth-btn">Register</button>
   </div>
 </nav>
+
+<app-side-menu [isOpen]="isSideMenuOpen" [style.display]="sideMenuDisplay"></app-side-menu>

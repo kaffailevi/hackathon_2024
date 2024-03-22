@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
 
 @Component({
   selector: 'app-side-menu',
@@ -8,5 +8,5 @@ import { Component } from '@angular/core';
   styleUrl: './side-menu.component.css'
 })
 export class SideMenuComponent {
-
+  @Input() isOpen: boolean = false;
 }
