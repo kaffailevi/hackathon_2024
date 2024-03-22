@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = User.TABLE_NAME)
 public class User {
 
-    public static final String TABLE_NAME = "users";
+    public static final String TABLE_NAME = "user";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,14 +37,5 @@ public class User {
 
     @Column
     private String profile_picture_url;
-
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "pet_user",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "pet_id"))
-    private List<Pet> petList;
-
-
 
 }
