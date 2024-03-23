@@ -1,0 +1,14 @@
+<!-- Add post pop-up window -->
+<div class="add-post-popup" *ngIf="showAddPost">
+  <div class="card">
+    <div class="card-body">
+      <!-- Your form elements for adding a post -->
+      <!-- Example: -->
+      <textarea class="form-control" placeholder="Write your post..." [(ngModel)]="newPostContent"></textarea>
+      <button class="btn btn-primary" (click)="addPost()">Add Post</button>
+    </div>
+  </div>
+</div>
+
+<!-- Background overlay -->
+<div class="overlay" *ngIf="showAddPost"></div>

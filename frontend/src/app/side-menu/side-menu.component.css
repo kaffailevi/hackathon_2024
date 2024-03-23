@@ -1,0 +1,73 @@
+.side-menu {
+  color: rgb(179, 138, 88);
+  position: fixed;
+  left: 0;
+  height: 100%; /* Set height to 100% */
+  width: 250px;
+  background-color: rgb(60, 82, 51);
+  padding: 20px;
+  /*box-sizing: border-box;*/
+}
+
+a{
+  color: rgb(179, 138, 88);
+  text-decoration: none;
+  font-size: 20px;
+}
+
+.menu-title {
+  padding-top: 70px;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.menu-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-item {
+  font-size: 16px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(179, 138, 88);
+  font-size: 20px;
+}
+
+.btn-logout {
+  /*margin: auto; !* Push the button to the bottom *!*/
+  background-color: rgb(13, 31, 34);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  position: relative;
+  margin-top: 30px;
+}
+
+.btn-logout:hover {
+  background-color: #b93c3c;
+}
+
+@media screen and (max-width: 767px) {
+  /* Mobile styles */
+  .side-menu {
+    width: 92.5%; /* Set width to 100% on mobile */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* Desktop styles */
+  .side-menu {
+    width: 250px; /* Set width to 250px on desktop */
+  }
+}
