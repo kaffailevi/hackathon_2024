@@ -1,13 +1,12 @@
 package com.threedumbdevs.springapi.services;
 
-import com.threedumbdevs.springapi.TO.PetTO;
-import com.threedumbdevs.springapi.converters.PetConverter;
 import com.threedumbdevs.springapi.entities.Pet;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.PetRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,32 +19,33 @@ public class PetService {
         return petRepository.findAll();
     }
 
-//    public Optional<PetTO> findById(Long id) {
-//
-////        return Optional<Pet> pet = petRepository.findById(id);pet.map(PetConverter::convertPetToTO).orElse(null);
-//    }
+    public Optional<Pet> findById(Long id) {
+        return petRepository.findById(id);
+    }
 
-    /*public PetTO save(PetTO petTO) {
-        Pet newPet = PetConverter.convertTOToPet(petTO);
-        return PetConverter.convertPetToTO(petRepository.save(newPet));
-    }*/
+    public Pet save(Pet pet) {
+        return petRepository.save(pet);
+    }
 
     public Pet update(Pet pet) {
         Optional<Pet> optionalPet = petRepository.findById(pet.getId());
-        if (optionalPet.isPresent()) {
-            Pet updatedPet = optionalPet.get();
-            updatedPet.setName(pet.getName());
-            updatedPet.setBirthDate(pet.getBirthDate());
-            updatedPet.setBreedName(pet.getBreedName());
-            return petRepository.save(updatedPet);
-        } else throw new NotFoundException("Pet not found");
+        if (optionalPet.isEmpty()) {
+            throw new NotFoundException("Pet not found");
+        }
+        Pet updatedPet = optionalPet.get();
+        updatedPet.setName(pet.getName());
+        updatedPet.setBirthDate(pet.getBirthDate());
+        updatedPet.setBreedName(pet.getBreedName());
+        return petRepository.save(updatedPet);
     }
 
-    public PetTO delete(Long id) {
-        Optional<Pet> pet = petRepository.findById(id);
-        if (pet.isPresent()) {
-            petRepository.delete(pet.get());
-            return PetConverter.convertPetToTO(pet.get());
-        } else throw new NotFoundException("Pet not found");
+    public Pet delete(Long id) {
+        Optional<Pet> optionalPet = petRepository.findById(id);
+        petRepository.delete(optionalPet.orElseThrow(() -> new NotFoundException("Pet not found")));
+        return optionalPet.get();
+    }
+
+    public List<Pet> findByUserId(Long userId) {
+        return petRepository.findByUserId(userId);
     }
 }
