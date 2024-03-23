@@ -22,24 +22,30 @@ public class LocationService {
         return locations.stream().map(LocationConverter::convertLocationToTO).toList();
     }
 
-    public LocationTO findById(Long id) {
-        Optional<Location> location = locationRepository.findById(id);
-        return location.map(LocationConverter::convertLocationToTO).orElse(null);
+    public Optional<Location> findById(Long id) {
+        return locationRepository.findById(id);
     }
 
-    /*public LocationTO save(LocationTO locationTO) {
-        Location newLocation = LocationConverter.convertTOToLocation(locationTO);
-        return LocationConverter.convertLocationToTO(locationRepository.save(newLocation));
-    }*/
+    public Location save(Location location) {
+        return locationRepository.save(location);
+    }
 
-    public LocationTO update(LocationTO locationTO) {
-        Optional<Location> location = locationRepository.findById(locationTO.getId());
-        if (location.isPresent()) {
-            Location updatedLocation = location.get();
-            updatedLocation.setLatitude(locationTO.getLatitude());
-            updatedLocation.setLongitude(locationTO.getLongitude());
-            updatedLocation.setName(locationTO.getName());
-            return LocationConverter.convertLocationToTO(locationRepository.save(updatedLocation));
-        } else throw new NotFoundException("Location not found");
+    public Location update(Location location) {
+        Optional<Location> opLocation = locationRepository.findById(location.getId());
+        if (opLocation.isEmpty()) {
+            throw new NotFoundException("Location not found");
+        }
+        Location updatedLocation = opLocation.get();
+        updatedLocation.setLatitude(location.getLatitude());
+        updatedLocation.setLongitude(location.getLongitude());
+        updatedLocation.setName(location.getName());
+        return locationRepository.save(updatedLocation);
+    }
+
+
+    public Location delete(Long locationId) {
+        Optional<Location> opLocation = locationRepository.findById(locationId);
+        locationRepository.delete(opLocation.orElseThrow(() -> new NotFoundException("Location not found")));
+        return opLocation.get();
     }
 }
