@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
-@RestController("/auth")
+@RestController()
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/auth")
+
 public class AuthController {
     private UserService userService;
     private TokenService tokenService;
@@ -26,6 +29,8 @@ public class AuthController {
         return UserConverter.convertUserToUserTO(userService.save(userCTO));
 
     }
+
+
 
 
     @PostMapping("/login")

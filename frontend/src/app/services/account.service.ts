@@ -9,10 +9,10 @@ import {JwtHelperService} from "@auth0/angular-jwt";
   providedIn: 'root'
 })
 export class AccountService {
-  private readonly TOKEN = 'token';
+  private readonly TOKEN = "token";
 
-  constructor(private http: HttpClient,
-              private router: Router) {
+  constructor(private http: HttpClient) {
+
   }
 
   login(email: string, password: string) {
@@ -25,7 +25,6 @@ export class AccountService {
         const result = response[this.TOKEN];
         if (result) {
           localStorage.setItem(this.TOKEN, result);
-          console.log('Token:', result); // Log the token in the console
           return true;
         } else {
           return false;
@@ -34,32 +33,28 @@ export class AccountService {
     );
   }
 
-  getUserId(): string | null {
-    console.log('getUserId running...');
-    const token = localStorage.getItem(this.TOKEN);
-    if (token) {
-      const jwtHelper = new JwtHelperService();
-      const decodedToken = jwtHelper.decodeToken(token);
-      console.log('Decoded Token:', decodedToken); // Log the decoded token object
-      if (decodedToken && decodedToken.jti) { // Access the user ID from the 'jti' property
-        console.log('User ID:', decodedToken.jti); // Log the user ID
-        return decodedToken.jti; // Return the user ID
-      }
-    }
-    return null;
-  }
-
   logout() {
     localStorage.removeItem(this.TOKEN);
-    // this.currentUser.next(null);
-    this.router.navigate(['home']);
+    location.reload();
   }
 
-  isLoggedIn(): boolean {
-    const jwt = new JwtHelperService();
-    const token = localStorage.getItem(this.TOKEN);
-    return !jwt.isTokenExpired(token);
-  }
+  // isLoggedIn(): boolean {
+  //   const jwt = new JwtHelperService();
+  //   const token = localStorage.getItem(this.TOKEN);
+  //   if(token !== null){
+  //     this.http.post(ApiEndpoints.CHECK_TOKEN, {token: token}).subscribe(
+  //       (value) => {
+  //         if(value == false){
+  //           this.logout();
+  //         }
+  //       }
+  //       , error => {
+  //         this.logout();
+  //       }
+  //     );
+  //     return !jwt.isTokenExpired(token);}
+  //   return false;
+  // }
 
   register(user: any) {
     return this.http.post(ApiEndpoints.register, user);
@@ -69,10 +64,12 @@ export class AccountService {
     return localStorage.getItem(this.TOKEN) as string;
   }
 
+  getDecodedToken() {
+    const jwt = new JwtHelperService();
+    return jwt.decodeToken(this.getToken());
+  }
 
-  // getUserById(userId: string): Observable<User> {
-  //   const url = `${ApiEndpoints.user}/${userId}`;
-  //   return this.http.get<User>(url);
-  // }
+
+
 
 }
