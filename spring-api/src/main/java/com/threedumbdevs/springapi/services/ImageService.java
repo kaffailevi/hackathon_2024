@@ -48,7 +48,14 @@ public class ImageService {
 
 
     }
-
+    public static MediaType decideMediaType(String fileExtension) {
+        return switch (fileExtension) {
+            case "jpg", "jpeg" -> MediaType.IMAGE_JPEG;
+            case "png" -> MediaType.IMAGE_PNG;
+            case "gif" -> MediaType.IMAGE_GIF;
+            default -> MediaType.APPLICATION_OCTET_STREAM;
+        };
+    }
     public byte[] getPostImageBytes(String imageName) {
         Path imagePath = Paths.get(POSTS_PATH, imageName);
         if (Files.exists(imagePath))

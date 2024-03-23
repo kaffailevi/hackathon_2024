@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,4 +14,6 @@ public class PostTO implements Serializable {
     private Long userId;
     private String date;
     private String imageUrl;
+    private Integer likes;
+
 }

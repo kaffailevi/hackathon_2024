@@ -81,7 +81,7 @@ public class UserControler {
         HttpHeaders headers = new HttpHeaders();
         String fileExtension = imageName.split("\\.")[1];
         headers.setContentType(decideMediaType(fileExtension));
-        return ResponseEntity.ok().headers(headers).body(imageService.getPostImageBytes(imageName));
+        return ResponseEntity.ok().headers(headers).body(imageService.getProfileImageBytes(imageName));
 
     }
 
