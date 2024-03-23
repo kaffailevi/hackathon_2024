@@ -1,5 +1,6 @@
 package com.threedumbdevs.springapi.services;
 
+import com.threedumbdevs.springapi.TO.PostTO;
 import com.threedumbdevs.springapi.entities.Post;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.PostRepository;
@@ -38,7 +39,7 @@ public class PostService {
         if (post.isPresent()) {
             Post updatedPost = post.get();
             updatedPost.setDescription(postTO.getDescription());
-            updatedPost.setDate(postTO.getDate());
+            //updatedPost.setDate(postTO.getDate());  ///TODO: Fix this and all date fields
             updatedPost.setImageUrl(postTO.getImageUrl());
             return PostConverter.convertPostToTO(postRepository.save(updatedPost));
         } else throw new NotFoundException("Post not found");

@@ -1,5 +1,6 @@
 package com.threedumbdevs.springapi.services;
 
+import com.threedumbdevs.springapi.TO.PetTO;
 import com.threedumbdevs.springapi.entities.Pet;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.PetRepository;
@@ -37,8 +38,8 @@ public class PetService {
         if (pet.isPresent()) {
             Pet updatedPet = pet.get();
             updatedPet.setName(petTO.getName());
-            updatedPet.setAge(petTO.getAge());
-            updatedPet.setBreed(petTO.getBreed());
+            updatedPet.setBirthDate(petTO.getBirthDate());
+            updatedPet.setBreedName(petTO.getBreed());
             return PetConverter.convertPetToTO(petRepository.save(updatedPet));
         } else throw new NotFoundException("Pet not found");
     }
