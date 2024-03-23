@@ -33,28 +33,46 @@ export class AccountService {
     );
   }
 
+  getUserId(): string | null {
+    console.log('getUserId running...');
+    const token = localStorage.getItem(this.TOKEN);
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      console.log('Decoded Token:', decodedToken); // Log the decoded token object
+      if (decodedToken && decodedToken.jti) { // Access the user ID from the 'jti' property
+        console.log('User ID:', decodedToken.jti); // Log the user ID
+        return decodedToken.jti; // Return the user ID
+      }
+    }
+    return null;
+  }
+
+  getUserEmail(): string | null {
+    console.log('getUserId running...');
+    const token = localStorage.getItem(this.TOKEN);
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      console.log('Decoded Token:', decodedToken); // Log the decoded token object
+      if (decodedToken && decodedToken.email) { // Access the user ID from the 'jti' property
+        console.log('User ID:', decodedToken.email); // Log the user ID
+        return decodedToken.email; // Return the user ID
+      }
+    }
+    return null;
+  }
+
   logout() {
     localStorage.removeItem(this.TOKEN);
     location.reload();
   }
 
-  // isLoggedIn(): boolean {
-  //   const jwt = new JwtHelperService();
-  //   const token = localStorage.getItem(this.TOKEN);
-  //   if(token !== null){
-  //     this.http.post(ApiEndpoints.CHECK_TOKEN, {token: token}).subscribe(
-  //       (value) => {
-  //         if(value == false){
-  //           this.logout();
-  //         }
-  //       }
-  //       , error => {
-  //         this.logout();
-  //       }
-  //     );
-  //     return !jwt.isTokenExpired(token);}
-  //   return false;
-  // }
+  isLoggedIn(): boolean {
+    const jwt = new JwtHelperService();
+    const token = localStorage.getItem(this.TOKEN);
+    return !jwt.isTokenExpired(token);
+  }
 
   register(user: any) {
     return this.http.post(ApiEndpoints.register, user);

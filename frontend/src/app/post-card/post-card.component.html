@@ -1,18 +1,77 @@
+<!--<div class="post-card-container" *ngFor="let post of posts">-->
+<!--  <div class="card">-->
+<!--    <div class="card-body">-->
+<!--      <div class="user-id">{{ post.user_id }}</div>-->
+<!--      <div class="description">{{ post.description }}</div>-->
+<!--      <div class="image-container"><img class="post-image" [src]="post.image" alt="Post Image"></div>-->
+<!--      <button class="heart-button" style="display: inline">-->
+<!--        <svg class="heart-svg" viewBox="0 0 24 24">-->
+<!--          <path fill-rule="evenodd" clip-rule="evenodd"-->
+<!--                d="M12 21.35l-1.452-1.318C5.277 15.81 2 12.094 2 8.25 2 5.42 4.42 3 7.25 3c1.742 0 3.417 1.082 4.75 2.75C13.833 4.082 15.508 3 17.25 3 20.08 3 22.5 5.42 22.5 8.25c0 3.844-3.277 7.561-8.548 11.782L12 21.35z"/>-->
+<!--        </svg>-->
+<!--        <span class="like-counter">{{ post.numberOfLikes }}</span> &lt;!&ndash; Like counter &ndash;&gt;-->
+<!--      </button>-->
+<!--      <a href="#" class="view-comments-link" (click)="toggleComments(post)">View Comments</a> &lt;!&ndash; View Comments link &ndash;&gt;-->
+<!--      <div *ngIf="post.showComments">-->
+<!--        &lt;!&ndash; Display comments here &ndash;&gt;-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
+
+
 <!--put posts into div with class card-list -->
 <div class="post-card-container">
   <div class="card">
     <div class="card-body">
-      <div class="user-id">{{ post.user_id }}</div>
+      <div style="display: flex; flex-direction:row ; margin-bottom: 20px">
+        <div class="profile-image-container"><img class="profile-image" [src]="post.user_profile" alt="Profile Image">
+        </div>
+        <div class="user-id">{{ post.user_id }}</div>
+      </div>
       <div class="description">{{ post.description }}</div>
       <div class="image-container"><img class="post-image" [src]="post.image" alt="Post Image"></div>
-      <button class="heart-button" style="display: inline">
-        <svg class="heart-svg" viewBox="0 0 24 24">
-          <path fill-rule="evenodd" clip-rule="evenodd"
-                d="M12 21.35l-1.452-1.318C5.277 15.81 2 12.094 2 8.25 2 5.42 4.42 3 7.25 3c1.742 0 3.417 1.082 4.75 2.75C13.833 4.082 15.508 3 17.25 3 20.08 3 22.5 5.42 22.5 8.25c0 3.844-3.277 7.561-8.548 11.782L12 21.35z"/>
-
-        </svg>
-<!--        <label class="heart-label">1m likes</label>-->
-      </button>
+      <div class="post-footer-container">
+        <button class="heart-button" style="display: inline">
+          <svg class="heart-svg" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                  d="M12 21.35l-1.452-1.318C5.277 15.81 2 12.094 2 8.25 2 5.42 4.42 3 7.25 3c1.742 0 3.417 1.082 4.75 2.75C13.833 4.082 15.508 3 17.25 3 20.08 3 22.5 5.42 22.5 8.25c0 3.844-3.277 7.561-8.548 11.782L12 21.35z"/>
+          </svg>
+          <span class="like-counter">{{ post.numberOfLikes }}</span>
+        </button>
+        <!--        <a class=" view-comments-link"  >View Comments</a>-->
+        <a type="button" class="btn view-comments-link" data-toggle="modal" data-target="#commentsModal"
+           style="color: red; text-decoration: underline">
+          View comments
+        </a>
+      </div>
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="commentsModal" tabindex="-1" role="dialog" aria-labelledby="commentsModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentsModalLabel">Post</h5>
+        <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <textarea class="form-control" placeholder="Write your comment...">
+          </textarea>
+        <div style="margin-top: 10px">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn close-btn" data-dismiss="modal">Close</button>
+        <button type="button" class="btn save-btn">Post</button>
+      </div>
+    </div>
+  </div>
+</div>
+
