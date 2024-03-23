@@ -6,13 +6,12 @@
   width: 250px;
   background-color: rgb(60, 82, 51);
   padding: 20px;
-
   /*box-sizing: border-box;*/
 }
 
 .menu-title {
   padding-top: 70px;
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
@@ -26,6 +25,12 @@
   font-size: 16px;
   margin-bottom: 10px;
   cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(179, 138, 88);
+  font-size: 20px;
 }
 
 .btn-logout {
