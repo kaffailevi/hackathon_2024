@@ -3,14 +3,13 @@ package com.threedumbdevs.springapi.controllers;
 import com.threedumbdevs.springapi.TO.PetTO;
 import com.threedumbdevs.springapi.converters.PetConverter;
 import com.threedumbdevs.springapi.entities.Pet;
+import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.services.PetService;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/pet")
@@ -24,23 +23,40 @@ public class PetController {
         return petService.findAll().stream().map(PetConverter::convertPetToTO).toList();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/find/{id}")
     public PetTO getPetById(@PathVariable Long id) {
-        return petService.findById(id);
+        Optional<Pet> opPet = petService.findById(id);
+        if(opPet.isEmpty()) {
+            throw new NotFoundException("Pet not found");
+        }
+        return PetConverter.convertPetToTO(opPet.get());
     }
 
-    @PostMapping
-    public Pet createPet(@RequestBody Pet pet) {
-        return petService.createPet(pet);
+    @PostMapping(path ="add" )
+    public PetTO addPet(@RequestBody PetTO petTO) {
+        Pet newPet = PetConverter.convertTOToPet(petTO);
+        return PetConverter.convertPetToTO(petService.save(newPet));
     }
 
-    @PutMapping("/{id}")
-    public Pet updatePet(@PathVariable Long id, @RequestBody Pet pet) {
-        return petService.updatePet(id, pet);
+    @PostMapping("/update")
+    public PetTO updatePet(@RequestBody PetTO petTO) {
+        Pet pet = PetConverter.convertTOToPet(petTO);
+        try {
+            return PetConverter.convertPetToTO(petService.update(pet));
+        } catch (NotFoundException e) {
+            throw new NotFoundException(e.getMessage());
+        }
     }
 
-    @DeleteMapping("/{id}")
-    public void deletePet(@PathVariable Long id) {
-        petService.deletePet(id);
+    @DeleteMapping("delete/{id}")
+    public PetTO deletePet(@PathVariable Long id) {
+        Pet optionalPet = petService.delete(id);
+        return PetConverter.convertPetToTO(optionalPet);
+    }
+
+    ///TODO user_id -> pet list
+    @GetMapping(path = "/user/{id}")
+    public List<PetTO> getPetsByUserId(@PathVariable Long user_id) {
+        return petService.findByUserId(user_id).stream().map(PetConverter::convertPetToTO).toList();
     }
 }
