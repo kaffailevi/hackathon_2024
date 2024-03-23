@@ -18,7 +18,7 @@ export class NavbarComponent {
 
   redirectToLogin() {
     console.log("Login");
-    this.router.navigate(['/login']);
+    this.router.navigate(['login']);
   }
 
   redirectToRegister() {
