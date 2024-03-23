@@ -1,6 +1,61 @@
 .home-body{
-  margin: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgb(13,31,34);
+  background-color: rgb(19, 36, 40);
 }
+
+.add-post-button {
+  margin-left: 50px;
+  margin-top: 50px;
+  height: max-content;
+  background-color: rgb(230, 135, 135);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.add-post-button:hover {
+  background-color: rgb(230, 135, 135);
+  border: rgb(38,63,39);
+  border: none
+}
+
+
+.home-body-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+}
+
+.home-body {
+  padding-top: 75px;
+}
+
+.modal-content {
+  /* Adjust the background color, border-radius, and box-shadow */
+  background-color: rgb(19, 36, 40);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 6px 10px 6px #e68787, 0 0 10px #e68787;
+}
+
+.modal-header {
+  /* Center-align the modal title */
+  text-align: center;
+}
+
+.modal-footer {
+  /* Center-align the modal buttons */
+  justify-content: center;
+
+}
+
+.close-btn, .save-btn {
+  height: max-content;
+  background-color: rgb(230, 135, 135);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+

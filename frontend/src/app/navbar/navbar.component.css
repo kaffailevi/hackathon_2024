@@ -2,12 +2,19 @@
 .navbar {
   background-color: rgb(38, 64, 39);
   padding: 10px;
-  height: 45px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  z-index: 2;
   justify-content: space-between;
-  /*width: 100%;*/
+  width: 100%;
+  height: max-content;
+  position: fixed;
+  top: 0;
+}
+
+.side-menu{
+  z-index: 1;
 }
 
 .btn-container {
@@ -17,7 +24,7 @@
 }
 
 .button-container{
-
+  padding-right:10px;
 }
 
 .auth-btn {
@@ -102,4 +109,5 @@
 h2{
   font-family: "Orbitron", sans-serif;
   color: #e68787;
+  margin-left: 75px;
 }

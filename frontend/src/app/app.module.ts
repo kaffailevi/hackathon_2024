@@ -8,12 +8,18 @@ import {NavbarComponent} from "./navbar/navbar.component";
 import {HomeComponent} from "./home/home.component";
 import {RouterOutlet} from "@angular/router";
 import { FooterComponent } from './footer/footer.component';
+import { LoginComponent } from './authentification/login/login.component';
+import { RegisterComponent } from './authentification/register/register.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { AddPostComponent } from './add-post/add-post.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent],
+  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent, LoginComponent, RegisterComponent, AddPostComponent],
   imports: [
     BrowserModule,
-    RouterOutlet
+    RouterOutlet,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

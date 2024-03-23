@@ -1,17 +1,25 @@
 .post-card-container{
   display: flex;
   justify-content: center;
-
 }
 
 .card {
-  width: calc(30% - 20px); /* Adjust width as needed */
+  /*max-width: 80%;*/
+  display: flex;
+  flex-direction: column;
+  width: max-content; /* Adjust width as needed */
   margin: 15px;
   background-color: rgb(211, 196, 182);
   /*border: 5px solid #e68787;*/
   border-radius: 20px;
   box-shadow: 6px 10px 6px #e68787, 0 0 10px #e68787;
   height: auto;
+}
+
+.image-container{
+  display: flex;
+  justify-content: center;
+
 }
 
 .card-body {
@@ -28,7 +36,7 @@
 }
 
 .post-image {
-  width: 100%;
+  width: 70%;
   border-radius: 20px;
 }
 
@@ -55,4 +63,23 @@
 
 .heart-button label{
   margin-left: 10px;
+}
+
+@media screen and (max-width: 767px) {
+  /* Mobile styles */
+  .post-card-container {
+    flex-wrap: wrap;
+  }
+
+  .card {
+    width: 100%; /* Take full width on mobile */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  /* Desktop styles */
+  .card {
+    width: 40%; /* Set card width to 40% on desktop */
+    max-width: max-content; /* Allow card to expand beyond a maximum width */
+  }
 }

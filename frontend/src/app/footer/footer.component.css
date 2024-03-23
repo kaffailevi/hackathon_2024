@@ -2,13 +2,14 @@
   background-color: #593434; /* Set background color */
   color: #fff; /* Set text color */
   padding: 5px 0; /* Add padding for spacing */
-  text-align: center; /* Center align text */
-  /*position: fixed; !* Fix footer to the bottom *!*/
-  /*width: 100%; !* Full width *!*/
-  /*bottom: 0;*/
+  display: flex;
+  justify-content: center; /* Center content horizontally */
+  align-items: center; /* Center content vertically */
+  height: 60px;
 }
 
 .footer-content {
   /*max-width: 960px; !* Set maximum width for content *!*/
   margin: 0 auto; /* Center content horizontally */
+
 }
