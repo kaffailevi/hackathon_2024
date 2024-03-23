@@ -60,6 +60,9 @@ public class Pet {
     )
     private Set<Location> favouriteLocations = new HashSet<>();
 
+    @Column
+    private String profilePictureName;
+
 
 
 

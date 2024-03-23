@@ -22,8 +22,8 @@ public class Location {
     private String name;
 
     @Column(nullable = false)
-    private double latitude;
+    private String latitude;
 
     @Column(nullable = false)
-    private double longitude;
+    private String longitude;
 }
