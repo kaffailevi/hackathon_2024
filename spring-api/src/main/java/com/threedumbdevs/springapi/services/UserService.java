@@ -3,6 +3,7 @@ package com.threedumbdevs.springapi.services;
 import com.threedumbdevs.springapi.TO.UserCTO;
 import com.threedumbdevs.springapi.TO.UserTO;
 import com.threedumbdevs.springapi.converters.UserConverter;
+import com.threedumbdevs.springapi.entities.Pet;
 import com.threedumbdevs.springapi.entities.User;
 import com.threedumbdevs.springapi.exceptions.InternalErrorException;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
@@ -10,6 +11,7 @@ import com.threedumbdevs.springapi.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,10 +21,10 @@ public class UserService {
 
     private UserRepository userRepository;
 
-//    public List<User> findAll() {
-//        List<User> users = userRepository.findAll();
-//        return users.stream().map(UserConverter::convertUserToTO).toList();
-//    }
+    public List<User> findAll() {
+        List<User> users = userRepository.findAll();
+        return users;
+    }
 
     public User save(UserCTO userCTO) {
         User user = new User();
@@ -44,6 +46,15 @@ public class UserService {
             return user.get();
         } else throw new NotFoundException("User not found");
     }
+
+    public Optional<User> find(Long id) {
+        return userRepository.findById(id);
+    }
+
+//    public List<Pet> findPets(User user){
+//        return
+//    }
+
 
 //    public UserTO findById(Long id) {
 //        Optional<User> user = userRepository.findById(id);
