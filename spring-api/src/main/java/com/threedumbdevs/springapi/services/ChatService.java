@@ -1,5 +1,7 @@
 package com.threedumbdevs.springapi.services;
 
+import com.threedumbdevs.springapi.TO.ChatTO;
+import com.threedumbdevs.springapi.converters.ChatConverter;
 import com.threedumbdevs.springapi.entities.Chat;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.ChatRepository;
@@ -22,10 +24,7 @@ public class ChatService {
 
     public ChatTO findById(Long id) {
         Optional<Chat> chat = chatRepository.findById(id);
-        if(chat.isPresent()) {
-            return ChatConverter.convertChatToTO(chat.get());
-        }
-        return null;
+        return chat.map(ChatConverter::convertChatToTO).orElse(null);
     }
 
     /*public ChatTO save(ChatTO chatTO) {

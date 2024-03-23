@@ -1,6 +1,7 @@
 package com.threedumbdevs.springapi.services;
 
 import com.threedumbdevs.springapi.TO.PetTO;
+import com.threedumbdevs.springapi.converters.PetConverter;
 import com.threedumbdevs.springapi.entities.Pet;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.PetRepository;
@@ -22,10 +23,7 @@ public class PetService {
 
     public PetTO findById(Long id) {
         Optional<Pet> pet = petRepository.findById(id);
-        if(pet.isPresent()) {
-            return PetConverter.convertPetToTO(pet.get());
-        }
-        return null;
+        return pet.map(PetConverter::convertPetToTO).orElse(null);
     }
 
     /*public PetTO save(PetTO petTO) {
@@ -33,14 +31,14 @@ public class PetService {
         return PetConverter.convertPetToTO(petRepository.save(newPet));
     }*/
 
-    public PetTO update(PetTO petTO) {
-        Optional<Pet> pet = petRepository.findById(petTO.getId());
-        if (pet.isPresent()) {
-            Pet updatedPet = pet.get();
-            updatedPet.setName(petTO.getName());
-            updatedPet.setBirthDate(petTO.getBirthDate());
-            updatedPet.setBreedName(petTO.getBreed());
-            return PetConverter.convertPetToTO(petRepository.save(updatedPet));
+    public Pet update(Pet pet) {
+        Optional<Pet> optionalPet = petRepository.findById(pet.getId());
+        if (optionalPet.isPresent()) {
+            Pet updatedPet = optionalPet.get();
+            updatedPet.setName(pet.getName());
+            updatedPet.setBirthDate(pet.getBirthDate());
+            updatedPet.setBreedName(pet.getBreedName());
+            return petRepository.save(updatedPet);
         } else throw new NotFoundException("Pet not found");
     }
 

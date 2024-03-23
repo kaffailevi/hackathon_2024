@@ -1,11 +1,14 @@
 package com.threedumbdevs.springapi.services;
 
+import com.threedumbdevs.springapi.TO.CommentTO;
+import com.threedumbdevs.springapi.converters.CommentConverter;
 import com.threedumbdevs.springapi.entities.Comment;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.CommentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,10 +25,7 @@ public class CommentService {
 
     public CommentTO findById(Long id) {
         Optional<Comment> comment = commentRepository.findById(id);
-        if(comment.isPresent()) {
-            return CommentConverter.convertCommentToTO(comment.get());
-        }
-        return null;
+        return comment.map(CommentConverter::convertCommentToTO).orElse(null);
     }
 
     /*public CommentTO save(CommentTO commentTO) {
@@ -38,7 +38,7 @@ public class CommentService {
         if (comment.isPresent()) {
             Comment updatedComment = comment.get();
             updatedComment.setAnswer(commentTO.getAnswer());
-            updatedComment.setDate(commentTO.getDate());
+            updatedComment.setDate(LocalDateTime.parse(commentTO.getDate()));
             return CommentConverter.convertCommentToTO(commentRepository.save(updatedComment));
         } else throw new NotFoundException("Comment not found");
     }

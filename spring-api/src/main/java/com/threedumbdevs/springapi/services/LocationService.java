@@ -1,5 +1,7 @@
 package com.threedumbdevs.springapi.services;
 
+import com.threedumbdevs.springapi.TO.LocationTO;
+import com.threedumbdevs.springapi.converters.LocationConverter;
 import com.threedumbdevs.springapi.entities.Location;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.LocationRepository;
@@ -22,10 +24,7 @@ public class LocationService {
 
     public LocationTO findById(Long id) {
         Optional<Location> location = locationRepository.findById(id);
-        if (location.isPresent()) {
-            return LocationConverter.convertLocationToTO(location.get());
-        }
-        return null;
+        return location.map(LocationConverter::convertLocationToTO).orElse(null);
     }
 
     /*public LocationTO save(LocationTO locationTO) {

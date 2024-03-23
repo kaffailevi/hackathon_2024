@@ -9,7 +9,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CommentTO implements Serializable {
     private Long id;
-    private String content;
+    private String answer;
     private Long userId;
     private Long postId;
     private String date;

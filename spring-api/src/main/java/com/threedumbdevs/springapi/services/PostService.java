@@ -1,12 +1,14 @@
 package com.threedumbdevs.springapi.services;
 
 import com.threedumbdevs.springapi.TO.PostTO;
+import com.threedumbdevs.springapi.converters.PostConverter;
 import com.threedumbdevs.springapi.entities.Post;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.PostRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,10 +25,7 @@ public class PostService {
 
     public PostTO findById(Long id) {
         Optional<Post> post = postRepository.findById(id);
-        if(post.isPresent()) {
-            return PostConverter.convertPostToTO(post.get());
-        }
-        return null;
+        return post.map(PostConverter::convertPostToTO).orElse(null);
     }
 
     /*public PostTO save(PostTO postTO) {
@@ -39,7 +38,7 @@ public class PostService {
         if (post.isPresent()) {
             Post updatedPost = post.get();
             updatedPost.setDescription(postTO.getDescription());
-            //updatedPost.setDate(postTO.getDate());  ///TODO: Fix this and all date fields
+            updatedPost.setDate(LocalDateTime.parse(postTO.getDate()));  ///TODO: Fix this and all date fields
             updatedPost.setImageUrl(postTO.getImageUrl());
             return PostConverter.convertPostToTO(postRepository.save(updatedPost));
         } else throw new NotFoundException("Post not found");

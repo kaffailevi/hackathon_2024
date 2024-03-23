@@ -12,4 +12,5 @@ public class PostTO implements Serializable {
     private String description;
     private Long userId;
     private String date;
+    private String imageUrl;
 }
