@@ -1,0 +1,18 @@
+<!--put posts into div with class card-list -->
+<div class="post-card-container">
+  <div class="card">
+    <div class="card-body">
+      <div class="user-id">{{ post.user_id }}</div>
+      <div class="description">{{ post.description }}</div>
+      <div class="image-container"><img class="post-image" [src]="post.image" alt="Post Image"></div>
+      <button class="heart-button" style="display: inline">
+        <svg class="heart-svg" viewBox="0 0 24 24">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M12 21.35l-1.452-1.318C5.277 15.81 2 12.094 2 8.25 2 5.42 4.42 3 7.25 3c1.742 0 3.417 1.082 4.75 2.75C13.833 4.082 15.508 3 17.25 3 20.08 3 22.5 5.42 22.5 8.25c0 3.844-3.277 7.561-8.548 11.782L12 21.35z"/>
+
+        </svg>
+<!--        <label class="heart-label">1m likes</label>-->
+      </button>
+    </div>
+  </div>
+</div>

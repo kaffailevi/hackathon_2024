@@ -1,0 +1,19 @@
+<div style="margin: 0; box-sizing: border-box">
+  <nav class="navbar">
+    <div class="logo-container">
+      <img class="logo" src="/assets/logo.png" alt="LOGO">
+      <div class="hamburger-menu" (click)="showSideMenu()">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+      </div>
+    </div>
+    <h2>Pet me.</h2>
+    <div class="button-container">
+      <button class="btn auth-btn" (click)="redirectToLogin()">Login</button>
+      <button class="btn auth-btn" (click)="redirectToRegister()" >Register</button>
+    </div>
+  </nav>
+
+  <app-side-menu [isOpen]="isSideMenuOpen" [style.display]="sideMenuDisplay"></app-side-menu>
+</div>

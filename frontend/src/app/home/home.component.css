@@ -1,0 +1,75 @@
+.home-body{
+  background-color: rgb(19, 36, 40);
+}
+
+.add-post-button {
+  margin-left: calc(50% - 135px);
+  margin-top: 15px;
+  height: max-content;
+  background-color: rgb(230, 135, 135);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  align-self: center;
+}
+
+.add-post-button:hover {
+  background-color: rgb(108, 63, 63);
+  border: rgb(38,63,39);
+  border: none
+}
+
+.home-body-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; /* Center align items horizontally */
+}
+
+.home-body {
+  padding-top: 75px;
+}
+
+.modal-content {
+  /* Adjust the background color, border-radius, and box-shadow */
+  background-color: rgb(19, 36, 40);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 6px 10px 6px #e68787, 0 0 10px #e68787;
+}
+
+.modal-header {
+  /* Center-align the modal title */
+  text-align: center;
+}
+
+.modal-footer {
+  /* Center-align the modal buttons */
+  justify-content: center;
+
+}
+
+.close-btn, .save-btn {
+  height: max-content;
+  background-color: rgb(230, 135, 135);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.modal-body input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-footer {
+  justify-content: space-between; /* Align buttons with space between */
+}
+
+

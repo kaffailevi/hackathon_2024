@@ -21,6 +21,9 @@ public class User {
     @Column(nullable = false)
     private String firstName;
 
+    @Column(nullable = false, unique = true)
+    private String email;
+
     @Column(nullable = false)
     private String lastName;
 
@@ -35,5 +38,8 @@ public class User {
 
     @Column
     private String profilePictureUrl;
+
+    @Column
+    private String password;
 
 }

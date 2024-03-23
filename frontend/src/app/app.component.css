@@ -1,0 +1,17 @@
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Hide the side menu by default */
+  width: 250px;
+  height: 100%;
+  background-color: #333;
+  transition: left 0.3s ease; /* Add transition for smooth animation */
+}
+
+.side-menu.active {
+  left: 0; /* Move the side menu into view */
+  z-index: 10; /* Ensure a high z-index value to keep it on top */
+}
+body{
+  background-color: #0d1f22;
+}
