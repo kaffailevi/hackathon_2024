@@ -55,7 +55,7 @@ public class PetController {
     }
 
     ///TODO user_id -> pet list
-    @GetMapping(path = "/user/{id}")
+    @GetMapping(path = "/user/{user_id}")
     public List<PetTO> getPetsByUserId(@PathVariable Long user_id) {
         return petService.findByUserId(user_id).stream().map(PetConverter::convertPetToTO).toList();
     }

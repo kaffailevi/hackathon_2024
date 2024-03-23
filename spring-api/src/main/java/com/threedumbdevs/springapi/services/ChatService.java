@@ -8,6 +8,7 @@ import com.threedumbdevs.springapi.repositories.ChatRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,26 +18,38 @@ public class ChatService {
 
     private ChatRepository chatRepository;
 
-    public List<ChatTO> findAll() {
-        List<Chat> chats = chatRepository.findAll();
-        return chats.stream().map(ChatConverter::convertChatToTO).toList();
+    public List<Chat> findAll() {
+        return chatRepository.findAll();
     }
 
-    public ChatTO findById(Long id) {
-        Optional<Chat> chat = chatRepository.findById(id);
-        return chat.map(ChatConverter::convertChatToTO).orElse(null);
+    public Optional<Chat> findById(Long id) {
+        return chatRepository.findById(id);
     }
 
-    /*public ChatTO save(ChatTO chatTO) {
-        Chat newChat = ChatConverter.convertTOToChat(chatTO);
-        return ChatConverter.convertChatToTO(chatRepository.save(newChat));
-    }*/
+    public Chat save(Chat chat) {
+        return chatRepository.save(chat);
+    }
 
-    public ChatTO delete(Long id) {
+    public Chat delete(Long id) {
         Optional<Chat> chat = chatRepository.findById(id);
-        if (chat.isPresent()) {
-            chatRepository.delete(chat.get());
-            return ChatConverter.convertChatToTO(chat.get());
-        } else throw new NotFoundException("Chat not found");
+        chatRepository.delete(chat.orElseThrow(() -> new NotFoundException("Chat not found")));
+        return chat.get();
+    }
+
+    public Chat update(Chat chat) {
+        Optional<Chat> optionalChat = chatRepository.findById(chat.getId());
+        if (optionalChat.isEmpty()) {
+            throw new NotFoundException("Chat not found");
+        }
+        Chat updatedChat = optionalChat.get();
+        updatedChat.setMessage(chat.getMessage());
+        updatedChat.setSender(chat.getSender());
+        updatedChat.setReceiver(chat.getReceiver());
+        updatedChat.setTimestamp(chat.getTimestamp());
+        return chatRepository.save(updatedChat);
+    }
+
+    public List<Chat> findByUsers(Long user1Id, Long user2Id) {
+        return chatRepository.findByUsers(user1Id, user2Id);
     }
 }
