@@ -39,6 +39,7 @@ public class PostService {
             Post updatedPost = post.get();
             updatedPost.setDescription(postTO.getDescription());
             updatedPost.setDate(postTO.getDate());
+            updatedPost.setImageUrl(postTO.getImageUrl());
             return PostConverter.convertPostToTO(postRepository.save(updatedPost));
         } else throw new NotFoundException("Post not found");
     }
