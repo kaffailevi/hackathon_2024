@@ -5,8 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
 @Data
 @AllArgsConstructor
@@ -21,21 +19,21 @@ public class User {
     private Long id;
 
     @Column(nullable = false)
-    private String first_name;
+    private String firstName;
 
     @Column(nullable = false)
-    private String last_name;
+    private String lastName;
 
     @Column(nullable = false)
     private int age;
 
     @Column(nullable = false)
-    private boolean available_for_hire;
+    private boolean availableForHire;
 
     @Column
     private int rating;
 
     @Column
-    private String profile_picture_url;
+    private String profilePictureUrl;
 
 }
