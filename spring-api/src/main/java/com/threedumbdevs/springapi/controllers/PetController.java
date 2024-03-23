@@ -24,23 +24,27 @@ public class PetController {
         return petService.findAll().stream().map(PetConverter::convertPetToTO).toList();
     }
 
-    @GetMapping("/{id}")
-    public PetTO getPetById(@PathVariable Long id) {
-        return petService.findById(id);
-    }
+//    @GetMapping("/{id}")
+//    public PetTO getPetById(@PathVariable Long id) {
+//        return petService.findById(id);
+//    }
 
-    @PostMapping
-    public Pet createPet(@RequestBody Pet pet) {
-        return petService.createPet(pet);
-    }
+//    @PostMapping
+//    public Pet createPet(@RequestBody Pet pet) {
+//        return petService.createPet(pet);
+//    }
 
-    @PutMapping("/{id}")
-    public Pet updatePet(@PathVariable Long id, @RequestBody Pet pet) {
-        return petService.updatePet(id, pet);
-    }
+//    @PutMapping("/{id}")
+//    public Pet updatePet(@PathVariable Long id, @RequestBody Pet pet) {
+//        return petService.updatePet(id, pet);
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public void deletePet(@PathVariable Long id) {
+//        petService.deletePet(id);
+//    }
 
-    @DeleteMapping("/{id}")
-    public void deletePet(@PathVariable Long id) {
-        petService.deletePet(id);
-    }
+
+
+
 }

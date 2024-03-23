@@ -3,8 +3,10 @@ package com.threedumbdevs.springapi.services;
 import com.threedumbdevs.springapi.TO.PostTO;
 import com.threedumbdevs.springapi.converters.PostConverter;
 import com.threedumbdevs.springapi.entities.Post;
+import com.threedumbdevs.springapi.entities.User;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.PostRepository;
+import com.threedumbdevs.springapi.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +19,7 @@ import java.util.Optional;
 public class PostService {
 
     private PostRepository postRepository;
+    private UserRepository userRepository;
 
     public List<PostTO> findAll() {
         List<Post> posts = postRepository.findAll();
@@ -28,10 +31,23 @@ public class PostService {
         return post.map(PostConverter::convertPostToTO).orElse(null);
     }
 
-    /*public PostTO save(PostTO postTO) {
-        Post newPost = PostConverter.convertTOToPost(postTO);
-        return PostConverter.convertPostToTO(postRepository.save(newPost));
-    }*/
+   public Post save(PostTO postTO) {
+       Post newPost = PostConverter.convertTOToPost(postTO);
+//       private String date;
+//       private Long id;
+//       private String description;
+//       private String imageUrl;
+//       private Long userId;
+
+       newPost.setDate(LocalDateTime.now());
+       Optional<User> optionalUser = userRepository.findById(postTO.getUserId());
+
+       newPost.setUser(optionalUser.orElseThrow(() -> new NotFoundException("User not found")));
+
+
+
+       return postRepository.save(newPost);
+   }
 
     public PostTO update(PostTO postTO) {
         Optional<Post> post = postRepository.findById(postTO.getId());
