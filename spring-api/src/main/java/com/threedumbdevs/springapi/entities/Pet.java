@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -36,7 +37,7 @@ public class Pet {
     private String breedName;
 
     @Column(nullable = false)
-    private Date birthDate;
+    private LocalDateTime birthDate;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "location")
