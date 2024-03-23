@@ -1,1 +1,31 @@
-<p>user-profile works!</p>
+<app-navbar></app-navbar>
+<div class="user-profile-container">
+<form [formGroup]="profileForm" (ngSubmit)="onSave()">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input type="text" class="form-control" formControlName="firstName" id="firstName">
+  </div>
+  <div class="form-group">
+    <label for="lastName">Last Name</label>
+    <input type="text" class="form-control" formControlName="lastName" id="lastName">
+  </div>
+  <div class="form-group">
+    <label for="email">Email</label>
+    <input type="email" class="form-control" formControlName="email" id="email">
+  </div>
+  <div class="form-group">
+    <label for="age">Age</label>
+    <input type="number" class="form-control" formControlName="age" id="age">
+  </div>
+  <div class="form-group">
+    <label for="availableForHire">Available For Hire</label>
+    <select class="form-control" formControlName="availableForHire" id="availableForHire">
+      <option value="1">Yes</option>
+      <option value="0">No</option>
+    </select>
+  </div>
+  <!-- Add more form fields for other user data -->
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>
+</div>
+<app-footer></app-footer>

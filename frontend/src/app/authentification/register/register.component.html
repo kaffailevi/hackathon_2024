@@ -31,6 +31,8 @@
           </div>
         </div>
 
+
+
         <div class="form__field">
           <input
             type="email"
@@ -73,9 +75,9 @@
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
             <div *ngIf="f.confirmPassword.errors && f.confirmPassword.errors['required']">Confirm password is required
             </div>
-            <!--                    <div *ngIf="f.confirmPassword.errors && f.confirmPassword.errors['passwordMismatch']">-->
-            <!--                        The two passwords must match-->
-            <!--                    </div>-->
+            <div *ngIf="f.confirmPassword.errors && f.confirmPassword.errors['passwordMismatch']">
+              The two passwords must match
+            </div>
 
           </div>
 
@@ -85,20 +87,34 @@
         </div>
 
         <div class="form__field">
-          <select
-            formControlName="gender"
-            class="form-select form__field"
-            [ngClass]="{ 'is-invalid': submitted && f.gender.errors }"
-          >
-            <option value="" class="selectTitle" selected disabled hidden>Looking for dogs to sit:</option>
-            <option value="Male">Yes</option>
-            <option value="Female">No</option>
-            <option value="Other">Maybe</option>
-          </select>
-          <div *ngIf="submitted && f.gender.errors" class="invalid-feedback">
-            <div *ngIf="f.gender.errors['required']">Gender is required</div>
+          <input
+            placeholder="age"
+            type="number"
+            formControlName="age"
+            [ngClass]="{ 'is-invalid': submitted && f.age.errors }"
+          />
+          <div *ngIf="submitted && f.age.errors" class="invalid-feedback">
+            <div *ngIf="f.age.errors['required']">Age is required</div>
           </div>
         </div>
+
+        <div class="form__field" style="height: 42px">
+          <select
+            formControlName="availableForHire"
+
+            class="form-select form__field "
+            [ngClass]="{ 'is-invalid': submitted && f.availableForHire.errors }"
+          >
+            <option value="" class="selectTitle">Looking for dogs to sit?</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <div *ngIf="submitted && f.availableForHire.errors" class="invalid-feedback">
+            <div *ngIf="f.availableForHire.errors['required']">Gender is required</div>
+          </div>
+        </div>
+
+
 
         <div class="form__field">
           <button class="btn btn-primary custom-btn" type="submit">

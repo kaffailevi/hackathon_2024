@@ -1,9 +1,10 @@
 import {ActivatedRoute, Router} from '@angular/router';
 import {AbstractControl, FormBuilder, ValidatorFn, Validators} from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 // import {AccountService} from '../services/account.service';
 import {Component} from '@angular/core';
 import {style} from "@angular/animations";
+import {AccountService} from "../../services/account.service";
 
 @Component({
   selector: 'app-register',
@@ -17,9 +18,9 @@ export class RegisterComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmPassword: ['', Validators.required],
-    //confirmPassword: ['', [Validators.required, this.passwordValidator()]],
-    gender: ['', Validators.required],
-    admin: ['']
+    availableForHire: ['', Validators.required],
+    age: ['', Validators.required],
+    rating: ['', Validators.required],
   });
   loading = false;
   submitted = false;
@@ -28,7 +29,7 @@ export class RegisterComponent {
     private formBuilder: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    //private accountService: AccountService
+    private accountService: AccountService
   ) {
     this.form.valueChanges.subscribe((value) => console.log(value));
 
@@ -60,49 +61,49 @@ export class RegisterComponent {
     }
 
     this.loading = true;
-    // this.accountService.register(this.form.value as any).subscribe({
-    //
-    //   next: () => {
-    //     // Reset loading state and navigate to the login page on success
-    //     this.loading = false;
-    //     // let mess = document.getElementById("success");
-    //     // mess?.setAttribute("style","display:block");
-    //     //
-    //     // this.router.navigate(['/login'], { relativeTo: this.route });
-    //
-    //   },
-    //   error: (error) => {
-    //     // Handle the error and reset loading state
-    //     this.loading = false;
-    //     // Add error handling logic here (e.g., display error message)
-    //     console.log("Loading error: ");
-    //     console.log(error);
-    //     let mess = document.getElementById("success");
-    //     mess?.setAttribute("style", "display:block");
-    //
-    //     //redirect with a delay of 2 seconds
-    //     setTimeout(() => {
-    //       this.router.navigate(['/login'], {relativeTo: this.route});
-    //     }, 2000);
-    //   },
-    // });
+    this.accountService.register(this.form.value as any).subscribe({
+
+      next: () => {
+        // Reset loading state and navigate to the login page on success
+        this.loading = false;
+        // let mess = document.getElementById("success");
+        // mess?.setAttribute("style","display:block");
+        //
+        // this.router.navigate(['/login'], { relativeTo: this.route });
+
+      },
+      error: (error) => {
+        // Handle the error and reset loading state
+        this.loading = false;
+        // Add error handling logic here (e.g., display error message)
+        console.log("Loading error: ");
+        console.log(error);
+        let mess = document.getElementById("success");
+        mess?.setAttribute("style", "display:block");
+
+        //redirect with a delay of 2 seconds
+        setTimeout(() => {
+          this.router.navigate(['/login'], {relativeTo: this.route});
+        }, 2000);
+      },
+    });
   }
 
   verifyPasswords(password: string | null | undefined, confirmPassword: string | null | undefined): boolean {
     return password === confirmPassword;
   }
 
-  /* passwordValidator(): ValidatorFn {
-       return (control: AbstractControl): { [key: string]: any } | null => {
-           const password = control.get('password');
-           const confirmPassword = control.get('confirmPassword');
+  passwordValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      const password = control.get('password');
+      const confirmPassword = control.get('confirmPassword');
 
-           if (password && confirmPassword && password.value !== confirmPassword.value) {
-               return { passwordMismatch: true };
-           }
-           return null;
-       };
-   }*/
+      if (password && confirmPassword && password.value !== confirmPassword.value) {
+        return {passwordMismatch: true};
+      }
+      return null;
+    };
+  }
 
 }
 
