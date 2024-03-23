@@ -14,9 +14,10 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { AddPostComponent } from './add-post/add-post.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent, LoginComponent, RegisterComponent, AddPostComponent],
+  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent, LoginComponent, RegisterComponent, AddPostComponent, UserProfileComponent],
   imports: [
     AppRoutingModule,
     RouterModule,

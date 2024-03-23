@@ -2,11 +2,10 @@
 
 <div class="home-body">
   <div class="home-body-content">
-    <button type="button" class="add-post-button" data-toggle="modal" data-target="#exampleModal">
-      Add post about your furry friend
-    </button>
-
     <div class="post-list">
+      <button type="button" class="add-post-button" data-toggle="modal" data-target="#exampleModal">
+        Add post about your furry friend
+      </button>
       <app-post-card></app-post-card>
       <app-post-card></app-post-card>
       <app-post-card></app-post-card>
@@ -19,13 +18,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Add post</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Post</h5>
           <button type="button" class="close " data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-
+          <input type="text" class="form-control" placeholder="Write your post...">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn close-btn" data-dismiss="modal">Close</button>
