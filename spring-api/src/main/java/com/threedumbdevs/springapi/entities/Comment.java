@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -35,5 +36,5 @@ public class Comment {
     private String answer;
 
     @Column(nullable = false)
-    private Date date;
+    private LocalDateTime date;
 }
