@@ -15,9 +15,10 @@ import { AddPostComponent } from './add-post/add-post.component';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FileUploadComponent } from './file-upload/file-upload.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent, LoginComponent, RegisterComponent, AddPostComponent, UserProfileComponent],
+  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent, LoginComponent, RegisterComponent, AddPostComponent, UserProfileComponent, FileUploadComponent],
   imports: [
     AppRoutingModule,
     RouterModule,

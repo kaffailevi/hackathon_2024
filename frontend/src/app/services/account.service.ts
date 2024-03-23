@@ -49,6 +49,21 @@ export class AccountService {
     return null;
   }
 
+  getUserEmail(): string | null {
+    console.log('getUserId running...');
+    const token = localStorage.getItem(this.TOKEN);
+    if (token) {
+      const jwtHelper = new JwtHelperService();
+      const decodedToken = jwtHelper.decodeToken(token);
+      console.log('Decoded Token:', decodedToken); // Log the decoded token object
+      if (decodedToken && decodedToken.email) { // Access the user ID from the 'jti' property
+        console.log('User ID:', decodedToken.email); // Log the user ID
+        return decodedToken.email; // Return the user ID
+      }
+    }
+    return null;
+  }
+
   logout() {
     localStorage.removeItem(this.TOKEN);
     // this.currentUser.next(null);

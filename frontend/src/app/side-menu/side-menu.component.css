@@ -10,9 +10,15 @@
   /*box-sizing: border-box;*/
 }
 
+a{
+  color: rgb(179, 138, 88);
+  text-decoration: none;
+  font-size: 20px;
+}
+
 .menu-title {
   padding-top: 70px;
-  font-size: 20px;
+  font-size: 24px;
   margin-bottom: 20px;
 }
 
@@ -29,7 +35,7 @@
 }
 
 .btn-logout {
-  margin: auto; /* Push the button to the bottom */
+  /*margin: auto; !* Push the button to the bottom *!*/
   background-color: rgb(13, 31, 34);
   color: #fff;
   border: none;

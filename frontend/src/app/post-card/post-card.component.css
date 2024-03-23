@@ -1,4 +1,4 @@
-.post-card-container{
+.post-card-container {
   display: flex;
   justify-content: center;
 }
@@ -16,7 +16,7 @@
   height: auto;
 }
 
-.image-container{
+.image-container {
   display: flex;
   justify-content: center;
 
@@ -29,6 +29,8 @@
 .user-id {
   font-weight: bold;
   margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
 }
 
 .description {
@@ -61,7 +63,7 @@
   fill: #e68787; /* Color when hovered */
 }
 
-.heart-button label{
+.heart-button label {
   margin-left: 10px;
 }
 
@@ -83,3 +85,63 @@
     max-width: max-content; /* Allow card to expand beyond a maximum width */
   }
 }
+
+.post-footer-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.post-footer-container a {
+  position: absolute;
+  right: 30px;
+  margin-top: 10px;
+}
+
+.profile-image{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.modal-content {
+  /* Adjust the background color, border-radius, and box-shadow */
+  background-color: rgb(19, 36, 40);
+  color: white;
+  border-radius: 20px;
+  box-shadow: 6px 10px 6px #e68787, 0 0 10px #e68787;
+}
+
+.modal-header {
+  /* Center-align the modal title */
+  text-align: center;
+}
+
+.modal-footer {
+  /* Center-align the modal buttons */
+  justify-content: center;
+
+}
+
+.close-btn, .save-btn {
+  height: max-content;
+  background-color: rgb(230, 135, 135);
+  border: none;
+  color: white;
+  border-radius: 20px;
+  padding: 10px 20px;
+}
+
+.modal-body input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.modal-footer {
+  justify-content: space-between; /* Align buttons with space between */
+}
+
+
