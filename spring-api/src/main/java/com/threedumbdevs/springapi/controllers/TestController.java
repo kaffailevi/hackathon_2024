@@ -30,45 +30,21 @@ public class TestController {
     }
 
 
-
-    @GetMapping("/posts/image/{imageName}")
-    public ResponseEntity<byte[]> getProfileImage(@PathVariable String imageName) {
-
-            HttpHeaders headers = new HttpHeaders();
-            String fileExtension = imageName.split("\\.")[1];
-            headers.setContentType(decideMediaType(fileExtension));
-            return ResponseEntity.ok().headers(headers).body(imageService.getPostImageBytes(imageName));
-
-    }
-
-
-    private MediaType decideMediaType(String fileExtension) {
-        return switch (fileExtension) {
-            case "jpg", "jpeg" -> MediaType.IMAGE_JPEG;
-            case "png" -> MediaType.IMAGE_PNG;
-            case "gif" -> MediaType.IMAGE_GIF;
-            default -> MediaType.APPLICATION_OCTET_STREAM;
-        };
-    }
+//
+//    @GetMapping("/posts/image/{imageName}")
+//    public ResponseEntity<byte[]> getProfileImage(@PathVariable String imageName) {
+//
+//            HttpHeaders headers = new HttpHeaders();
+//            String fileExtension = imageName.split("\\.")[1];
+//            headers.setContentType(decideMediaType(fileExtension));
+//            return ResponseEntity.ok().headers(headers).body(imageService.getPostImageBytes(imageName));
+//
+//    }
 
 
-    @PostMapping( path = "/profile/image/upload")
-    public ResponseEntity<byte[]> uploadImage( @RequestParam("file") MultipartFile file) {
-        try {
-            String[] ogFileNameSplitted = file.getOriginalFilename().split("\\.");
-            String fileExtension = ogFileNameSplitted[ogFileNameSplitted.length - 1];
 
-            HttpHeaders headers = new HttpHeaders();
 
-            headers.setContentType(decideMediaType(fileExtension));
 
-            return ResponseEntity.ok().headers(headers).body(imageService.savePostImage(file, "test." + fileExtension));
-        } catch (IOException e) {
-            throw new InternalErrorException("Error uploading file");
-        } catch (IllegalArgumentException e) {
-            throw new NotAllowedException("File is empty");
-        }
-    }
 
 
 }
