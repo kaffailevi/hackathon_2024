@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import {SideMenuComponent} from "./side-menu/side-menu.component";
+import {PostCardComponent} from "./post-card/post-card.component";
+import {NavbarComponent} from "./navbar/navbar.component";
+import {HomeComponent} from "./home/home.component";
+import {RouterOutlet} from "@angular/router";
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    RouterOutlet
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
