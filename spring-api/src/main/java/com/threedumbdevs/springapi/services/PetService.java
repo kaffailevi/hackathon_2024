@@ -16,14 +16,13 @@ import java.util.Optional;
 public class PetService {
     private PetRepository petRepository;
 
-    public List<PetTO> findAll() {
-        List<Pet> pets = petRepository.findAll();
-        return pets.stream().map(PetConverter::convertPetToTO).toList();
+    public List<Pet> findAll() {
+        return petRepository.findAll();
     }
 
-    public PetTO findById(Long id) {
-        Optional<Pet> pet = petRepository.findById(id);
-        return pet.map(PetConverter::convertPetToTO).orElse(null);
+    public Optional<PetTO> findById(Long id) {
+
+        return Optional<Pet> pet = petRepository.findById(id);pet.map(PetConverter::convertPetToTO).orElse(null);
     }
 
     /*public PetTO save(PetTO petTO) {
