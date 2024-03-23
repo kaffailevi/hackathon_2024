@@ -33,10 +33,10 @@ public class Pet {
     private String name;
 
     @Column(nullable = false)
-    private String breed_name;
+    private String breedName;
 
     @Column(nullable = false)
-    private Date birth_date;
+    private Date birthDate;
 
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "location")
