@@ -24,10 +24,10 @@ public class TestController {
     private TokenService tokenService;
     private ImageService imageService;
 
-    @GetMapping("/hello")
-    public String test() {
-        return tokenService.createToken("test","test@mail.com");
-    }
+//    @GetMapping("/hello")
+//    public String test() {
+//        return tokenService.createToken("test","test@mail.com");
+//    }
 
 
 //

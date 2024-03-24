@@ -16,9 +16,10 @@ import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent, LoginComponent, RegisterComponent, AddPostComponent, UserProfileComponent, FileUploadComponent],
+  declarations: [AppComponent, HomeComponent, NavbarComponent, SideMenuComponent, PostCardComponent, FooterComponent, LoginComponent, RegisterComponent, AddPostComponent, UserProfileComponent, FileUploadComponent, ChatComponent],
   imports: [
     AppRoutingModule,
     RouterModule,

@@ -27,12 +27,12 @@ public class TokenService {
     private static final String TOKEN_SUFFIX = "\"}";
     private static final Long TTL_MILLIS = 1324800000L;
 
-    public String createToken(final String name, final String email) {
-        String token = this.createJWT(name, email);
+    public String createToken(final String name, final String email,final Long id) {
+        String token = this.createJWT(name, email,id);
         return TOKEN_PREFIX + token + TOKEN_SUFFIX;
     }
 
-    private String createJWT(String name, String email) {
+    private String createJWT(String name, String email,Long id) {
 
         // The JWT signature algorithm we will be using to sign the token
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
@@ -41,7 +41,7 @@ public class TokenService {
         Date now = new Date(nowMillis);
 
         JwtBuilder builder = Jwts.builder()
-                .setId(ID).setIssuedAt(now).claim(NAME, name).claim(EMAIL, email)
+                .setId(ID).setIssuedAt(now).claim("userid",id).claim(NAME, name).claim(EMAIL, email)
                 .signWith(signatureAlgorithm, base64SecretBytes);
 
         if (TTL_MILLIS >= 0) {

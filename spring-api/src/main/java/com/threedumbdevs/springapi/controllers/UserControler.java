@@ -75,7 +75,7 @@ public class UserControler {
         }
     }
 
-    @GetMapping("/posts/image/{imageName}")
+    @GetMapping("/image/{imageName}")
     public ResponseEntity<byte[]> getProfileImage(@PathVariable String imageName) {
 
         HttpHeaders headers = new HttpHeaders();

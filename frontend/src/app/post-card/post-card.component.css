@@ -14,6 +14,8 @@
   border-radius: 20px;
   box-shadow: 6px 10px 6px #e68787, 0 0 10px #e68787;
   height: auto;
+  min-width: 100%;
+  z-index: 0;
 }
 
 .image-container {
@@ -24,6 +26,7 @@
 
 .card-body {
   padding: 20px;
+
 }
 
 .user-id {

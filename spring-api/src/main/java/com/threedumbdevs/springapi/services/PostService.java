@@ -40,7 +40,7 @@ public class PostService {
 
         return posts.stream().filter(post ->{
             for (Pet pet : petFriends) {
-                if (post.getUser().getId() == pet.getUser().getId()) {
+                if ((post.getUser().getId() == pet.getUser().getId()) || (post.getUser().getId() == user_id)) {
                     return true;
                 }
             }

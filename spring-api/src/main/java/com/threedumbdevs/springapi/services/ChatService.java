@@ -5,6 +5,7 @@ import com.threedumbdevs.springapi.converters.ChatConverter;
 import com.threedumbdevs.springapi.entities.Chat;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.ChatRepository;
+import com.threedumbdevs.springapi.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ import java.util.Optional;
 public class ChatService {
 
     private ChatRepository chatRepository;
+    private UserRepository userRepository;
 
     public List<Chat> findAll() {
         return chatRepository.findAll();
@@ -26,7 +28,12 @@ public class ChatService {
         return chatRepository.findById(id);
     }
 
-    public Chat save(Chat chat) {
+    public Chat save(ChatTO chatTO) {
+        Chat chat = ChatConverter.convertTOToChat(chatTO);
+
+        chat.setSender(userRepository.findById(chatTO.getSendUserId()).orElseThrow(() -> new NotFoundException("Sender not found")));
+        chat.setReceiver(userRepository.findById(chatTO.getReceiveUserId()).orElseThrow(() -> new NotFoundException("Receiver not found")));
+
         return chatRepository.save(chat);
     }
 

@@ -13,7 +13,7 @@ public class CommentConverter {
     public static CommentTO convertCommentToTO(Comment comment) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         String strDateTime = comment.getDate().format(formatter);
-        return new CommentTO(comment.getId(), comment.getAnswer(), comment.getUser().getId(), comment.getPost().getId(), strDateTime);
+        return new CommentTO(comment.getId(), comment.getAnswer(), comment.getUser().getId(), comment.getPost().getId(), strDateTime, comment.getUser().getFirstName()+" "+comment.getUser().getLastName());
     }
 
     public static Comment convertTOToComment(CommentTO commentTO) {

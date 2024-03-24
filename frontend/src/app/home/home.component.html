@@ -6,9 +6,13 @@
       <button type="button" class="add-post-button" data-toggle="modal" data-target="#exampleModal">
         Add post about your furry friend
       </button>
-      <app-post-card></app-post-card>
-      <app-post-card></app-post-card>
-      <app-post-card></app-post-card>
+      <div *ngFor="let post of posts"  style="z-index: -1">
+        <app-post-card [post]="post">
+
+        </app-post-card>
+      </div>
+
+
     </div>
     <div><br></div>
   </div>
@@ -24,14 +28,15 @@
           </button>
         </div>
         <div class="modal-body">
-          <input type="text" class="form-control" placeholder="Write your post...">
+          <textarea [(ngModel)]="description" type="text" class="form-control" placeholder="Write your post...">
+          </textarea>
           <div style="margin-top: 10px">
             <app-file-upload></app-file-upload>
           </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn close-btn" data-dismiss="modal">Close</button>
-          <button type="button" class="btn save-btn">Post</button>
+          <button type="button" (click)="createPost()" class="btn save-btn">Post</button>
         </div>
       </div>
     </div>

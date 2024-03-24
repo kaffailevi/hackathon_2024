@@ -13,4 +13,5 @@ public class CommentTO implements Serializable {
     private Long userId;
     private Long postId;
     private String date;
+    private String username;
 }

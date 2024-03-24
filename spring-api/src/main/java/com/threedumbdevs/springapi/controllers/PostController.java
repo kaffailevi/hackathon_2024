@@ -22,6 +22,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/posts")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class PostController {
 
     private PostService postService;
@@ -57,7 +58,7 @@ public class PostController {
         HttpHeaders headers = new HttpHeaders();
         String fileExtension = imageName.split("\\.")[1];
         headers.setContentType(ImageService.decideMediaType(fileExtension));
-        return ResponseEntity.ok().headers(headers).body(imageService.getProfileImageBytes(imageName));
+        return ResponseEntity.ok().headers(headers).body(imageService.getPostImageBytes(imageName));
     }
 
     @PostMapping(path = "/post/add")

@@ -41,7 +41,7 @@ public class AuthController {
 
         User user = userService.findByEmail(email);
         if(PasswordService.check(pw, user.getPassword())) {
-            return tokenService.createToken(user.getFirstName()+user.getLastName(), user.getEmail());
+            return tokenService.createToken(user.getFirstName()+user.getLastName(), user.getEmail(), user.getId());
         } else {
             throw new NotAllowedException("Invalid credentials");
         }

@@ -14,7 +14,7 @@
 }
 
 .side-menu{
-  z-index: 1;
+  z-index: 99999999999;
 }
 
 .btn-container {

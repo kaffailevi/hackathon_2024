@@ -11,9 +11,9 @@ import java.util.List;
 public class PostTO implements Serializable {
     private Long id;
     private String description;
+    private String username;
     private Long userId;
     private String date;
     private String imageUrl;
     private Integer likes;
-
 }
