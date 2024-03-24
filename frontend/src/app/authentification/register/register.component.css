@@ -93,7 +93,7 @@ a {
   color: #7e8ba3;
 }
 
-#success {
+#fail {
   color: #F35F40;
   background-color: rgba(255, 114, 114, 0.11);
   display: none;

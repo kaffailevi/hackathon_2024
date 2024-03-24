@@ -1,9 +1,8 @@
 <app-navbar></app-navbar>
 <div class="register-container">
   <div class="grid align__item">
-
     <div class="register">
-      <img src="/assets/logo.png" alt="LOGO" class="site__logo">
+      <img src="/assets/logo.png" alt="LOGO" class="site__logo" />
       <h2>Sign Up</h2>
 
       <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
@@ -15,7 +14,9 @@
             [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"
           />
           <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors['required']">First Name is required</div>
+            <div *ngIf="f.firstName.errors['required']">
+              First Name is required
+            </div>
           </div>
         </div>
 
@@ -27,11 +28,11 @@
             [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"
           />
           <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors['required']">Last Name is required</div>
+            <div *ngIf="f.lastName.errors['required']">
+              Last Name is required
+            </div>
           </div>
         </div>
-
-
 
         <div class="form__field">
           <input
@@ -56,7 +57,9 @@
             [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
           />
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors['required']">Password is required</div>
+            <div *ngIf="f.password.errors['required']">
+              Password is required
+            </div>
             <div *ngIf="f.password.errors['minlength']">
               Password is not valid (length should have at least 6 characters)
             </div>
@@ -73,15 +76,24 @@
             required
           />
           <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.confirmPassword.errors && f.confirmPassword.errors['required']">Confirm password is required
+            <div
+              *ngIf="
+                f.confirmPassword.errors && f.confirmPassword.errors['required']
+              "
+            >
+              Confirm password is required
             </div>
-            <div *ngIf="f.confirmPassword.errors && f.confirmPassword.errors['passwordMismatch']">
+            <div
+              *ngIf="
+                f.confirmPassword.errors &&
+                f.confirmPassword.errors['passwordMismatch']
+              "
+            >
               The two passwords must match
             </div>
-
           </div>
 
-          <div class=" form__field" role="alert" id="passwordAlert">
+          <div class="form__field" role="alert" id="passwordAlert">
             <strong>The passwords must match!</strong>
           </div>
         </div>
@@ -101,41 +113,58 @@
         <div class="form__field" style="height: 42px">
           <select
             formControlName="availableForHire"
-
-            class="form-select form__field "
+            class="form-select form__field"
             [ngClass]="{ 'is-invalid': submitted && f.availableForHire.errors }"
           >
-            <option value="" class="selectTitle">Looking for dogs to sit?</option>
+            <option value="" class="selectTitle">
+              Looking for dogs to sit?
+            </option>
             <option value="1">Yes</option>
             <option value="0">No</option>
           </select>
-          <div *ngIf="submitted && f.availableForHire.errors" class="invalid-feedback">
-            <div *ngIf="f.availableForHire.errors['required']">Gender is required</div>
+          <div
+            *ngIf="submitted && f.availableForHire.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.availableForHire.errors['required']">
+              Gender is required
+            </div>
           </div>
         </div>
 
-
-
         <div class="form__field">
           <button class="btn btn-primary custom-btn" type="submit">
-          <span
-            *ngIf="loading"
-            class="spinner-border spinner-border-sm mr-1"
-          ></span>
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
             Sign up
           </button>
         </div>
 
-        <div class="alert alert-warning alert-dismissible fade show" role="alert" id="success">
-          <strong>Successful registration! </strong> You will be redirected to the login page.
-          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <div *ngIf="successful === true; else elseBlock">
+          <div
+            class="alert alert-warning alert-dismissible fade show"
+            role="alert"
+            id="success"
+          >
+            <strong>Successful registration! </strong> You will be redirected to
+            the login page.
+          </div>
         </div>
+        <ng-template #elseBlock>
+        <div
+            class="alert alert-warning alert-dismissible fade show"
+            role="alert"
+            id="fail"
+          >
+            <strong>Registration failed! </strong>Please try again!
+          </div>
+        </ng-template>
       </form>
 
       <p>Already have an account? <a href="/login">Log in</a></p>
-
     </div>
-
   </div>
 </div>
 <app-footer></app-footer>

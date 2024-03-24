@@ -33,7 +33,7 @@ public class UserService {
         user.setEmail(userCTO.getEmail());
         user.setAge(userCTO.getAge());
         user.setAvailableForHire(userCTO.isAvailableForHire());
-        user.setRating(userCTO.getRating());
+        user.setRating(0);
         user.setProfilePictureUrl("default.jpg");
         String password = PasswordService.hash(userCTO.getPassword());
         user.setPassword(password);

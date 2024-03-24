@@ -10,7 +10,6 @@ public class UserCTO {
     private String lastName;
     private int age;
     private boolean availableForHire;
-    private int rating;
     private String password;
     private String email;
 

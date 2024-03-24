@@ -20,10 +20,10 @@ export class RegisterComponent {
     confirmPassword: ['', Validators.required],
     availableForHire: ['', Validators.required],
     age: ['', Validators.required],
-    rating: ['', Validators.required],
   });
   loading = false;
   submitted = false;
+  successful = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -61,15 +61,22 @@ export class RegisterComponent {
     }
 
     this.loading = true;
-    this.accountService.register(this.form.value as any).subscribe({
+    this.accountService.register({
+      firstName: this.form.value.firstName,
+      lastName: this.form.value.lastName,
+      age: this.form.value.age,
+      availableForHire: this.form.value.availableForHire,
+      password: this.form.value.password,
+      email: this.form.value.email}).subscribe({
 
       next: () => {
         // Reset loading state and navigate to the login page on success
+        this.successful = true;
         this.loading = false;
-        // let mess = document.getElementById("success");
-        // mess?.setAttribute("style","display:block");
-        //
-        // this.router.navigate(['/login'], { relativeTo: this.route });
+        let mess = document.getElementById("success");
+        mess?.setAttribute("style","display:block");
+
+        this.router.navigate(['/login'], { relativeTo: this.route });
 
       },
       error: (error) => {
@@ -78,13 +85,13 @@ export class RegisterComponent {
         // Add error handling logic here (e.g., display error message)
         console.log("Loading error: ");
         console.log(error);
-        let mess = document.getElementById("success");
+        let mess = document.getElementById("fail");
         mess?.setAttribute("style", "display:block");
 
-        //redirect with a delay of 2 seconds
-        setTimeout(() => {
-          this.router.navigate(['/login'], {relativeTo: this.route});
-        }, 2000);
+        // //redirect with a delay of 2 seconds
+        // setTimeout(() => {
+        //   this.router.navigate(['/login'], {relativeTo: this.route});
+        // }, 2000);
       },
     });
   }
