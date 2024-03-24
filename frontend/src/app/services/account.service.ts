@@ -33,19 +33,19 @@ export class AccountService {
     );
   }
 
-  getUserId(): string | null {
+  getUserId(): number {
     console.log('getUserId running...');
     const token = localStorage.getItem(this.TOKEN);
     if (token) {
       const jwtHelper = new JwtHelperService();
       const decodedToken = jwtHelper.decodeToken(token);
       console.log('Decoded Token:', decodedToken); // Log the decoded token object
-      if (decodedToken && decodedToken.jti) { // Access the user ID from the 'jti' property
-        console.log('User ID:', decodedToken.jti); // Log the user ID
-        return decodedToken.jti; // Return the user ID
+      if (decodedToken && decodedToken.userid) { // Access the user ID from the 'jti' property
+        console.log('User ID:', decodedToken.userid); // Log the user ID
+        return Number(decodedToken.userid); // Return the user ID
       }
     }
-    return null;
+    return -1;
   }
 
   getUserEmail(): string | null {
@@ -68,7 +68,7 @@ export class AccountService {
     location.reload();
   }
 
-  isLoggedIn(): boolean {
+  public isLoggedIn(): boolean {
     const jwt = new JwtHelperService();
     const token = localStorage.getItem(this.TOKEN);
     return !jwt.isTokenExpired(token);
