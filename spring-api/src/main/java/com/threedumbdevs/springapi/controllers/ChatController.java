@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/chat")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class ChatController {
 
     private final ChatService chatService;
@@ -34,8 +35,8 @@ public class ChatController {
 
     @PostMapping(path = "add")
     public ChatTO addChat(@RequestBody ChatTO chatTO) {
-        Chat newChat = ChatConverter.convertTOToChat(chatTO);
-        return ChatConverter.convertChatToTO(chatService.save(newChat));
+
+        return ChatConverter.convertChatToTO(chatService.save(chatTO));
     }
 
     @PostMapping(path = "/update")

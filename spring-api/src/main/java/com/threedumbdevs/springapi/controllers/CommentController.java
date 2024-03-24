@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/comment")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class CommentController {
 
     private final CommentService commentService;
@@ -30,7 +31,7 @@ public class CommentController {
 
     @PostMapping(path ="add" )
     public CommentTO addComment(@RequestBody CommentTO commentTO) {
-        return CommentConverter.convertCommentToTO(commentService.save(CommentConverter.convertTOToComment(commentTO)));
+        return CommentConverter.convertCommentToTO(commentService.save(commentTO));
     }
 
     @PostMapping("/update")

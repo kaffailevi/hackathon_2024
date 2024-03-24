@@ -16,7 +16,7 @@ public class ChatConverter {
 
     public static Chat convertTOToChat(ChatTO chatTO) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(chatTO.getDate(), formatter);
-        return new Chat(chatTO.getId(), new User(), new User(), chatTO.getMessage(), dateTime);
+//        LocalDateTime dateTime = LocalDateTime.parse(chatTO.getDate(), formatter);
+        return new Chat(chatTO.getId(), new User(), new User(), chatTO.getMessage(), LocalDateTime.now());
     }
 }

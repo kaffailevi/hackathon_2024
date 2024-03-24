@@ -5,6 +5,8 @@ import com.threedumbdevs.springapi.converters.CommentConverter;
 import com.threedumbdevs.springapi.entities.Comment;
 import com.threedumbdevs.springapi.exceptions.NotFoundException;
 import com.threedumbdevs.springapi.repositories.CommentRepository;
+import com.threedumbdevs.springapi.repositories.PostRepository;
+import com.threedumbdevs.springapi.repositories.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +18,8 @@ import java.util.Optional;
 public class CommentService {
 
     private CommentRepository commentRepository;
-
+    private UserRepository userRepository;
+    private PostRepository postRepository;
     public List<Comment> findAll() {
         return commentRepository.findAll();
     }
@@ -25,8 +28,14 @@ public class CommentService {
         return commentRepository.findById(id);
     }
 
-    public Comment save(Comment comment) {
-        return commentRepository.save(comment);
+    public Comment save(CommentTO comment) {
+
+        Comment newComment = CommentConverter.convertTOToComment(comment);
+
+        newComment.setUser(userRepository.findById(comment.getUserId()).orElseThrow(() -> new NotFoundException("User not found")));
+        newComment.setPost(postRepository.findById(comment.getPostId()).orElseThrow(() -> new NotFoundException("Post not found")));
+
+        return commentRepository.save(newComment);
     }
 
     public Comment update(Comment comment) {

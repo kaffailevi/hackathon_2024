@@ -17,8 +17,8 @@ public class CommentConverter {
     }
 
     public static Comment convertTOToComment(CommentTO commentTO) {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-        LocalDateTime dateTime = LocalDateTime.parse(commentTO.getDate(), formatter);
-        return new Comment(commentTO.getId(), new Post(), new User(), commentTO.getAnswer(), dateTime);
+//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//        LocalDateTime dateTime = LocalDateTime.parse(commentTO.getDate(), formatter);
+        return new Comment(-1L, null, null, commentTO.getAnswer(), LocalDateTime.now());
     }
 }
