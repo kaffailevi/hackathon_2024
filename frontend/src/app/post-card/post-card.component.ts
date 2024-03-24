@@ -19,10 +19,20 @@ export class PostCardComponent {
   }
 
   addComment() {
-    // this.postService.addComment().subscribe((response) => {
-    //   this.post.comments = response;
-    //   this.currentComment = '';
-    // });
+
+    const comment = {
+      answer: this.currentComment,
+      userId: Number(this.accountService.getUserId()),
+      postId: this.post.id,
+      date: new Date().toISOString().split('T')[0],
+      username: ""
+    }
+
+    if(this.currentComment === '') return;
+    this.postService.addComment(comment).subscribe((response) => {
+      this.post.comments.push(response);
+      this.currentComment = '';
+    });
 
   }
 
