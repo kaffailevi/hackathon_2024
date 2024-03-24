@@ -21,15 +21,15 @@ export class UserProfileComponent implements OnInit{
       lastName: [this.user.lastName, Validators.required],
       email: [this.user.email, [Validators.required, Validators.email]],
       age: [this.user.age],
-      availableForHire: [this.user.availableForHire.toString()], // Assuming it's stored as a string
-      // Add more form controls for other user data
+      availableForHire: [this.user.availableForHire.toString()],
+      userPets: [this.user.userPets],
     });
   }
 
   onSave(): void {
     if (this.profileForm.valid) {
       const updatedUserData = this.profileForm.value;
-      // this.accountService.updateUser(updatedUserData); // Update user data on the server
+      this.accountService.updateUser(updatedUserData); // Update user data on the server
     }
   }
 }

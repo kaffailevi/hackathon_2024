@@ -88,6 +88,9 @@ export class AccountService {
   }
 
 
+  updateUser(updatedUserData: any) {
+    throw new Error('Method not implemented.');
+  }
 
 
 }
