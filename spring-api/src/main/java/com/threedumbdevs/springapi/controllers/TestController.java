@@ -19,6 +19,7 @@ import java.io.IOException;
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/v1/test")
+@CrossOrigin(origins = "http://localhost:4200")
 public class TestController {
 
     private TokenService tokenService;
