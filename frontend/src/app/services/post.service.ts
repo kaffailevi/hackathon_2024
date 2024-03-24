@@ -27,12 +27,8 @@ export class PostService {
   }
 
 
+  addComment(comment:any) {
+    return this.http.post<any>("http://localhost:8080/spring-api/api/v1/comment/add", comment);
 
-
-
-
-
-
-
-
+  }
 }

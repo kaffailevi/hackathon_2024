@@ -1,0 +1,80 @@
+<app-navbar></app-navbar>
+
+<div class="home-body">
+  <div class="home-body-content">
+    <div class="post-list">
+
+      <div class="card" style="width: 50rem">
+        <div class="card-body">
+          <div class="card">
+            <div class="card-body" style="display: flex;flex-direction: column;justify-content: center">
+              <div *ngFor="let user of users" style=" display: flex; flex-direction: row;justify-content: space-around; margin: 10px;border: 1px solid #333333;border-radius: 5px;padding: 5px;align-items: center">
+
+                  <div>
+                    <img style="width: 50px;border-radius: 50%" src="assets/pp.jpg" width="100%">
+                  </div>
+                  <div>
+                    {{user.firstName}} {{user.lastName}}
+                  </div>
+                  <button type="button"
+                          class="btn btn-primary"
+                          data-toggle="modal"
+                          data-target="#exampleModal"
+                          (click)="confChat(user.id)" >Open chat</button>
+
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div><br></div>
+  </div>
+
+</div>
+<app-footer></app-footer>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Chat</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div style="max-height: 200px;overflow-y: auto">
+          <div *ngFor="let chat of chats">
+            <div *ngIf="chat.sendUserId == userId">
+              <div style="display: flex;flex-direction: row;justify-content: flex-end">
+                <div style="background-color: #007bff;color: white;border-radius: 5px;padding: 5px;margin: 5px">
+                  {{chat.message}}
+                </div>
+              </div>
+            </div>
+            <div *ngIf="chat.sendUserId != userId">
+              <div style="display: flex;flex-direction: row;justify-content: flex-start; background: white">
+                <div style="background-color: #333333;color: white;border-radius: 5px;padding: 5px;margin: 5px">
+                  {{chat.message}}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <textarea [(ngModel)]="message" style="width: 100%"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+</div>
