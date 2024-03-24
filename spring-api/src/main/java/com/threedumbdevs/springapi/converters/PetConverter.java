@@ -15,8 +15,7 @@ public class PetConverter {
     public static PetTO convertPetToTO(Pet pet) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String birthDate = pet.getBirthDate().format(formatter);
-        return new PetTO(pet.getId(), pet.getName(), pet.getBreedName(), birthDate,
-                pet.getLastLocation().getId(), pet.getProfilePictureName(),
+        return new PetTO(pet.getId(), pet.getName(), pet.getBreedName(), birthDate, null, pet.getProfilePictureName(),
                 pet.getFriends().stream().map(Pet::getId).collect(Collectors.toList()),
                 pet.getFavouriteLocations().stream().map(Location::getId).collect(Collectors.toList()));
     }

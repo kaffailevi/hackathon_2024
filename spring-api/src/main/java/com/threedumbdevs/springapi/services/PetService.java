@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
@@ -47,5 +48,14 @@ public class PetService {
 
     public List<Pet> findByUserId(Long userId) {
         return petRepository.findByUserId(userId);
+    }
+
+    public Pet addFriend(Long petId1, Long petId2) {
+        Optional<Pet> optionalPet1 = petRepository.findById(petId1);
+        Optional<Pet> optionalPet2 = petRepository.findById(petId2);
+        Set<Pet> friends1 = optionalPet1.orElseThrow(()-> new NotFoundException("Pet not found")).getFriends();
+        friends1.add(optionalPet2.orElseThrow(()-> new NotFoundException("Pet not found")));
+        optionalPet1.get().setFriends(friends1);
+        return petRepository.save(optionalPet1.get());
     }
 }

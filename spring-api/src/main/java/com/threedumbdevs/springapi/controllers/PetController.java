@@ -14,6 +14,7 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/v1/pet")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class PetController {
 
     private final PetService petService;
@@ -36,6 +37,11 @@ public class PetController {
     public PetTO addPet(@RequestBody PetTO petTO) {
         Pet newPet = PetConverter.convertTOToPet(petTO);
         return PetConverter.convertPetToTO(petService.save(newPet));
+    }
+
+    @GetMapping("/addFriend/{pet_id1}/{pet_id2}")
+    public PetTO addFriend(@PathVariable Long pet_id1, @PathVariable Long pet_id2) {
+        return PetConverter.convertPetToTO(petService.addFriend(pet_id1, pet_id2));
     }
 
     @PostMapping("/update")
