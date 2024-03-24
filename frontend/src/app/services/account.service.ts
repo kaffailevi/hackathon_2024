@@ -4,6 +4,7 @@ import {Router} from "@angular/router";
 import {ApiEndpoints} from "./api.endpoints";
 import {map, Observable} from "rxjs";
 import {JwtHelperService} from "@auth0/angular-jwt";
+import { User } from '../chat/chat.component';
 
 @Injectable({
   providedIn: 'root'
@@ -93,4 +94,7 @@ export class AccountService {
   }
 
 
+  getUserById(userId: number) {
+    return this.http.get("http://localhost:8080/spring-api/user/find/" + userId);
+  }
 }

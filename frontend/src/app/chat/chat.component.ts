@@ -7,7 +7,7 @@ export interface User {
   "lastName": string,
   "email": string,
   "age": number,
-  "avavilableForHire": boolean,
+  "availableForHire": boolean,
   "rating": number,
   "id": number
 }
