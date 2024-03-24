@@ -5,6 +5,7 @@ import lombok.Data;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
