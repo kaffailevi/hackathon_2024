@@ -8,7 +8,7 @@ Welcome to Pet me.! This is a social media web application designed to connect p
 Before running the application, ensure you have the following software installed on your system:
 
 - Java Development Kit (JDK) - version 11 or higher
-- Node.js and npm - version 14.x or higher
+- Node.js and npm - version 14. or higher
 
 ### Backend Setup
 1. Clone the repository to your local machine:
