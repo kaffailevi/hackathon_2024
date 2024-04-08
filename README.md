@@ -1,6 +1,6 @@
-# Pet Me - Social Media Web App for Pets and Pet Owners
+# Pet me. - Social Media Web App for Pets and Pet Owners
 
-Welcome to Pet Me! This is a social media web application designed to connect pets and pet owners, providing a platform for sharing adorable pet photos, posts, and connecting with other pet enthusiasts.
+Welcome to Pet me.! This is a social media web application designed to connect pets and pet owners, providing a platform for sharing adorable pet photos, posts, and connecting with other pet enthusiasts.
 
 ## Installation Instructions
 
