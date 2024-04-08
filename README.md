@@ -11,7 +11,7 @@ Before running the application, ensure you have the following software installed
 - Node.js and npm - version 14.x or higher
 
 ### Backend Setup
-1. Clone the repository to your local machine: git clone <repository-url>
+1. Clone the repository to your local machine: git clone https://github.com/kaffailevi/hackathon_2024.git
 2. Navigate to the backend directory: cd backend
 3. Build and run the Spring Boot application using Maven: ./mvnw spring-boot:run
 
