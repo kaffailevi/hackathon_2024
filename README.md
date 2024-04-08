@@ -1,6 +1,6 @@
 # Pet Me - Social Media Web App for Pets and Pet Owners
 
-Welcome to Pet Me! This is a social media web application designed to connect pet owners worldwide, providing a platform for sharing adorable pet photos, stories, and connecting with other pet enthusiasts.
+Welcome to Pet Me! This is a social media web application designed to connect pets and pet owners, providing a platform for sharing adorable pet photos, posts, and connecting with other pet enthusiasts.
 
 ## Installation Instructions
 
@@ -23,17 +23,13 @@ The backend server will start running on `http://localhost:8080`.
 3. Install dependencies: npm install
 4. Run the Angular development server: ng serve
 
-
 The frontend server will start running on `http://localhost:4200`.
 
 ## Usage
 Once both the backend and frontend servers are running, you can access the Pet Me web application by opening a web browser and navigating to `http://localhost:4200`.
 
-## Contributing
-Contributions are welcome! Please fork the repository and create a pull request with your suggested changes.
-
-## License
-This project is licensed under the [MIT License](LICENSE).
+## Credits
+This project belongs to the 3DumbDevs hackathon team. All right reserved.
 
 
 
